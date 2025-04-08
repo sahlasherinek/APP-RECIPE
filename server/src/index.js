@@ -12,8 +12,10 @@ app.use(cors());
 app.use("/auth", userRouter);
 app.use("/recipes", recipesRouter);
 
+mongoose.set('strictQuery', false);
 mongoose.connect(
-  "mongodb+srv://demo1234:demo1234@recipetcluster.nxvwf.mongodb.net/rec_db?retryWrites=true&w=majority&appName=recipetcluster",
+ "mongodb+srv://sahlasalihek:sahlasalihek@recipecluster.ckycijg.mongodb.net/rec_db?retryWrites=true&w=majority&appName=RecipeCluster",
+
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -21,4 +23,4 @@ mongoose.connect(
     console.log("DB connected...")
   )
 
-app.listen(3001, () => console.log("Server started"));
+app.listen(4000, () => console.log("Server started"));
