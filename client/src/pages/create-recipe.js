@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { useGetUserID } from "../hooks/useGetUserID";
+import { Home } from "./home";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
@@ -16,6 +17,7 @@ export const CreateRecipe = () => {
     cookingTime: 0,
     userOwner: userID,
   });
+  const {fetchRecipes} = Home()
 
   const navigate = useNavigate();
 
@@ -47,7 +49,7 @@ export const CreateRecipe = () => {
         }
       );
 
-      alert("Recipe Created");
+      fetchRecipes();
       navigate("/");
     } catch (error) {
       console.error(error);

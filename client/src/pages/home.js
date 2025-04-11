@@ -3,6 +3,14 @@ import { useGetUserID } from "../hooks/useGetUserID";
 import axios from "axios";
 
 export const Home = () => {
+    const fetchRecipes = async () => {
+        try {
+          const response = await axios.get("https://recipe-app-6ygq.onrender.com/recipes");
+          setRecipes(response.data);
+        } catch (err) {
+          console.log(err);
+        }
+      };
   const [recipes, setRecipes] = useState([]);
   const [savedRecipes, setSavedRecipes] = useState([]);
 
@@ -10,14 +18,6 @@ export const Home = () => {
 
   useEffect(() => {
     const fetchRecipes = async () => {
-      try {
-        const response = await axios.get("https://recipe-app-6ygq.onrender.com/recipes");
-        setRecipes(response.data);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-
     const fetchSavedRecipes = async () => {
       try {
         const response = await axios.get(
@@ -31,7 +31,7 @@ export const Home = () => {
 
     fetchRecipes();
     fetchSavedRecipes();
-  }, []);
+  }, [recipes]);
 
   const saveRecipe = async (recipeID) => {
     try {
